@@ -12,12 +12,24 @@ public class BinomioDeNewton {
 		grado = gr;
 	}
 	
-	/**PUNTO 1 binomio de newton */
+	/**PUNTO 1 */
 	
 	public double obtenerCoeficienteTerminoK(int k) {
 		
 		return (int) (calculoCombinatoria(grado, k) * Math.pow(a, k) * Math.pow(b, grado-k) );
 	}
+	
+	/** PUNTO 2 */
+	
+	public Polinomio newtonFormaPolinomica() {
+		double [] coeficientes = new double[grado + 1];
+		for(int i = 0; i < coeficientes.length; i++ ) {
+			coeficientes[i] = calculoCombinatoria(grado, i);
+		}
+		return new Polinomio(coeficientes);
+	}
+	
+	/** metodos necesarios */
 	
 	public double factorial(double num) {
 		double resul=1;
@@ -39,7 +51,17 @@ public class BinomioDeNewton {
 		combinatoria = factorial(m) / (factorial(n) * factorial(m-n));
 		return combinatoria;
 	}
-
+	
+	public double combinatoriaRecursiva(double m, double n) {
+		if (m == 0 || m == n) {
+			return 1;
+		} else if (n == 0) {
+			return 0;
+		} else {
+			return combinatoriaRecursiva(m - 1, n - 1) + combinatoriaRecursiva(m - 1, n);
+		}
+	}
+	
 	public double getA() {
 		return a;
 	}
@@ -63,7 +85,5 @@ public class BinomioDeNewton {
 	public void setGrado(int grado) {
 		this.grado = grado;
 	}
-	
-	
 
 }

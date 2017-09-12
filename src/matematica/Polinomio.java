@@ -9,6 +9,11 @@ public class Polinomio {
 		coeficientes = new double[grado+1];
 	}
 	
+	public Polinomio(double[] coeficientes) {
+		this.grado = coeficientes.length - 1;
+		this.coeficientes = coeficientes;
+	}
+	
 	public double evaluarMSucesivas(double x ) {
 		double resultado=coeficientes[grado];
 		for(int i=0,j=grado; i<grado ;i++,j--){
