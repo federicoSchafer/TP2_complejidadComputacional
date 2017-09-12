@@ -22,10 +22,14 @@ public class Polinomio {
 			return coeficientes[grado];
 		return ( coeficientes[grado-n]*Math.pow(x, n) ) + evaluarRecursiva(x, n-1);
 	}
-	/*public double evaluarRecursivaPar(double x ){
-		
+	public double evaluarRecursivaPar(double x ,int n){
+		if(n==0)
+			return coeficientes[grado];
+		if(n % 2 == 0)
+			return coeficientes[grado-n]*Math.pow(x*x, n/2) + evaluarRecursivaPar(x, n-1);
+		return coeficientes[grado-n]*Math.pow(x, n) + evaluarRecursivaPar(x, n-1);
 	}
-	public double evaluarProgDinamica(double x ){
+	/*public double evaluarProgDinamica(double x ){
 		
 	}
 	public double evaluarMejorada(double x ){

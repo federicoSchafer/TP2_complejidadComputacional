@@ -18,7 +18,7 @@ public class TestPolinomio {
 		p1.setCoeficientes(2, 2);
 		p1.setCoeficientes(1, 3);
 		boolean valorDeRetorno;
-		if(p1.evaluarRecursiva(1, 3) == 10)
+		if(p1.evaluarRecursivaPar(1, 3) == 10)
 			valorDeRetorno=true;
 		else valorDeRetorno=false;
 		Assert.assertEquals(true, valorDeRetorno);
