@@ -37,10 +37,13 @@ public class Polinomio {
 	}
 	public double evaluarPow(double x ){
 		
-	}
-	public double evaluarHorner( double x ){
-		
 	}*/
+	public double evaluarHorner( double x ){
+		double resultado=0;
+		for(int i=grado; i>=0; i--)
+			resultado= resultado * x + coeficientes[i];
+		return resultado;
+	}
 
 	public double[] getCoeficientes() {
 		return coeficientes;
