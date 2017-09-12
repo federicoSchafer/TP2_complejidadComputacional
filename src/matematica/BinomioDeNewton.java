@@ -16,7 +16,7 @@ public class BinomioDeNewton {
 	
 	public double obtenerCoeficienteTerminoK(int k) {
 		
-		return (int) (calculoCombinatoria(grado, k) * Math.pow(a, k) * Math.pow(b, grado-k) );
+		return (int) (calculoCombinatoria(grado, k) * Math.pow(a, k) * Math.pow(b, grado - k) );
 	}
 	
 	/** PUNTO 2 */
