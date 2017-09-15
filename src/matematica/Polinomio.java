@@ -16,6 +16,11 @@ public class Polinomio {
 		this.coeficientes = coeficientes;
 	}
 	
+	/*
+	 Complejidad Computacional;
+	 MSucesivas -> O(n^2) 
+	 */
+	
 	public double evaluarMSucesivas(double x ) {
 		double resultado=coeficientes[grado];
 		int i,j;
@@ -24,6 +29,12 @@ public class Polinomio {
 		}
 		return resultado;
 	}
+	
+	/*
+	 Complejidad Computacional;
+	 Recursiva -> O(n!) 
+	 */
+	
 	public double evaluarRecursiva(double x){
 		return evaluarRecursiva1(x, grado);
 	}
@@ -32,6 +43,12 @@ public class Polinomio {
 			return coeficientes[grado];
 		return ( coeficientes[grado-n] * myPow(x, n) ) + evaluarRecursiva1(x, n-1);
 	}
+	
+	/*
+	 Complejidad Computacional;
+	 RecursivaPar -> O(n!) 
+	 */
+	
 	public double evaluarRecursivaPar(double x){
 		return evaluarRecursivaPar1(x,grado);
 	}
@@ -42,6 +59,12 @@ public class Polinomio {
 			return coeficientes[grado-n] * myPow(x*x, n/2) + evaluarRecursivaPar1(x, n-1);
 		return coeficientes[grado-n] * myPow(x, n) + evaluarRecursivaPar1(x, n-1);
 	}
+	
+	/*
+	 Complejidad Computacional;
+	 ProgDinamica -> O(n^2) 
+	 */
+	
 	public double evaluarProgDinamica(double x ){
 		double[] vectorResul = new double[grado+1];
 		int i;
@@ -51,6 +74,12 @@ public class Polinomio {
 		}
 		return vectorResul[i+1];
 	}
+	
+	/*
+	 Complejidad Computacional;
+	 Mejorada -> O(n)
+	 */
+	
 	public double evaluarMejorada(double x){
 		
 		double resultado = coeficientes[grado];
@@ -61,6 +90,12 @@ public class Polinomio {
 		}
 		return resultado;
 	}
+	
+	/*
+	 Complejidad Computacional;
+	 ProgDinamica -> O(n^2) 
+	 */
+	
 	public double evaluarPow(double x ){
 		double resultado=coeficientes[grado];
 		int i,j;
@@ -69,6 +104,12 @@ public class Polinomio {
 		}
 		return resultado;
 	}
+	
+	/*
+	 Complejidad Computacional;
+	 Horner -> O(n) 
+	 */
+	
 	public double evaluarHorner( double x ){
 		double resultado=0;
 		for(int i=grado; i>=0; i--)
