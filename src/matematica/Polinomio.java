@@ -51,9 +51,15 @@ public class Polinomio {
 		}
 		return vectorResul[i+1];
 	}
-	public double evaluarMejorada(double x ){
-				
-		return 1;
+	public double evaluarMejorada(double x){
+		
+		double resultado = coeficientes[grado];
+		double potencia = x;
+		for (int i = grado - 1; i >= 0; i--) {
+			resultado += coeficientes[i] * potencia;
+			potencia *= x;
+		}
+		return resultado;
 	}
 	public double evaluarPow(double x ){
 		double resultado=coeficientes[grado];
