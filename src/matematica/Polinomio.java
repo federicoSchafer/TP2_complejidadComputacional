@@ -1,7 +1,5 @@
 package matematica;
 
-import com.sun.xml.internal.bind.v2.runtime.Coordinator;
-
 public class Polinomio {
 	private int grado;
 	private double[] coeficientes;
@@ -24,17 +22,21 @@ public class Polinomio {
 		}
 		return resultado;
 	}
+	
 	public double evaluarRecursiva(double x){
 		return evaluarRecursiva1(x, grado);
 	}
+	
 	private double evaluarRecursiva1(double x ,int n){
 		if(n == 0)
 			return coeficientes[grado];
 		return ( coeficientes[grado-n] * myPow(x, n) ) + evaluarRecursiva1(x, n-1);
 	}
+	
 	public double evaluarRecursivaPar(double x){
 		return evaluarRecursivaPar1(x,grado);
 	}
+	
 	public double evaluarRecursivaPar1(double x ,int n){
 		if(n==0)
 			return coeficientes[grado];
@@ -42,6 +44,7 @@ public class Polinomio {
 			return coeficientes[grado-n] * myPow(x*x, n/2) + evaluarRecursivaPar1(x, n-1);
 		return coeficientes[grado-n] * myPow(x, n) + evaluarRecursivaPar1(x, n-1);
 	}
+	
 	public double evaluarProgDinamica(double x ){
 		double[] vectorResul = new double[grado+1];
 		int i;
@@ -51,10 +54,12 @@ public class Polinomio {
 		}
 		return vectorResul[i+1];
 	}
+	
 	public double evaluarMejorada(double x ){
 				
 		return 1;
 	}
+	
 	public double evaluarPow(double x ){
 		double resultado=coeficientes[grado];
 		int i,j;
@@ -63,6 +68,7 @@ public class Polinomio {
 		}
 		return resultado;
 	}
+	
 	public double evaluarHorner( double x ){
 		double resultado=0;
 		for(int i=grado; i>=0; i--)
