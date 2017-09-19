@@ -4,12 +4,15 @@ package test;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.GregorianCalendar;
+import java.util.Calendar;
+
 import matematica.BinomioDeNewton;
 import matematica.Polinomio;
 
 public class TestBinomioDeNewton {
 
-	@Test
+	/*@Test
 	public void queCalculaBienElCoeficienteK() {
 				
 		BinomioDeNewton binomio = new BinomioDeNewton(2, 4, 2);
@@ -31,33 +34,35 @@ public class TestBinomioDeNewton {
 		//System.out.println(q.toString());
 		Assert.assertEquals(true, q.equals(p));
 		
-	}
+	}*/
 	
 	@Test
 	public void tiempoDeEjecucionObtencionCoeficienteK() {
 		
-		long time_start, time_end;
-		time_start = System.currentTimeMillis();
+		Calendar tIni = new GregorianCalendar();
 		
-		BinomioDeNewton binomio = new BinomioDeNewton(2, 4, 2);
-		binomio.obtenerCoeficienteTerminoK(2);
+		BinomioDeNewton binomio = new BinomioDeNewton(2, 4, 1000000);
+		binomio.obtenerCoeficienteTerminoK(0);
 		
-		time_end = System.currentTimeMillis();
-		System.out.println("El calculo de obtener el coeficiente K tomo: "
-							+ ( time_end - time_start ) +" milisegundos");
+		Calendar tFin = new GregorianCalendar();
+
+		System.out.println("El calculo de obtener el desarrollo del binomio fue: "
+				+ ( tFin.getTimeInMillis() - tIni.getTimeInMillis()) +" milisegundos");
 	}
 	
-	@Test
+	/*@Test
 	public void tiempoDeEjecucionDesarrolloDeBinomio() {
 		
-		long time_start, time_end;
-		time_start = System.currentTimeMillis();
-		
-		BinomioDeNewton binomio = new BinomioDeNewton(2, 4, 1000);
+		Calendar tIni = new GregorianCalendar();
+	
+		BinomioDeNewton binomio = new BinomioDeNewton(2, 4, 200000);
 		binomio.newtonFormaPolinomica();
 		
-		time_end = System.currentTimeMillis();
+		Calendar tFin = new GregorianCalendar();
+
 		System.out.println("El calculo de obtener el desarrollo del binomio fue: "
-							+ ( time_end - time_start ) +" milisegundos");
-	}
+				+ ( tFin.getTimeInMillis() - tIni.getTimeInMillis()) +" milisegundos");
+		
+	}*/
+	
 }
