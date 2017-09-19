@@ -1,5 +1,7 @@
 package matematica;
 
+import java.util.Arrays;
+
 public class Polinomio {
 	private int grado;
 	private double[] coeficientes;
@@ -65,6 +67,36 @@ public class Polinomio {
 	 ProgDinamica -> O(n^2) 
 	 */
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.hashCode(coeficientes);
+		result = prime * result + grado;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Polinomio other = (Polinomio) obj;
+		if (!Arrays.equals(coeficientes, other.coeficientes))
+			return false;
+		if (grado != other.grado)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Polinomio [grado=" + grado + ", coeficientes=" + Arrays.toString(coeficientes) + "]";
+	}
+
 	public double evaluarProgDinamica(double x ){
 		double[] vectorResul = new double[grado+1];
 		int i;
