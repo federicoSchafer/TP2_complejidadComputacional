@@ -49,7 +49,7 @@ public class Polinomio {
 	 */
 	
 	public double evaluarRecursivaPar(double x){
-		return evaluarRecursivaPar1(x,grado);
+		return evaluarRecursivaPar1(x, grado);
 	}
 	
 	private double evaluarRecursivaPar1(double x ,int n){
@@ -81,7 +81,6 @@ public class Polinomio {
 	 */
 	
 	public double evaluarMejorada(double x){
-		
 		double resultado = coeficientes[grado];
 		double potencia = x;
 		for (int i = grado - 1; i >= 0; i--) {
