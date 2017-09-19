@@ -23,8 +23,8 @@ public class BinomioDeNewton {
 	
 	public Polinomio newtonFormaPolinomica() {
 		double [] coeficientes = new double[grado + 1];
-		for(int i = 0; i < coeficientes.length; i++ ) {
-			coeficientes[i] = calculoCombinatoria(grado, i);
+		for(int i = 0; i <= grado; i++ ) {
+			coeficientes[i] = obtenerCoeficienteTerminoK(i);
 		}
 		return new Polinomio(coeficientes);
 	}
