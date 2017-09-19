@@ -14,6 +14,11 @@ public class Polinomio {
 		this.coeficientes = coeficientes;
 	}
 	
+	/*
+	 Complejidad Computacional;
+	 MSucesivas -> O(n^2) 
+	*/
+	
 	public double evaluarMSucesivas(double x ) {
 		double resultado=coeficientes[grado];
 		int i,j;
@@ -22,6 +27,11 @@ public class Polinomio {
 		}
 		return resultado;
 	}
+
+	/*
+	 Complejidad Computacional;
+	 Recursiva -> O(n!) 
+	 */
 	
 	public double evaluarRecursiva(double x){
 		return evaluarRecursiva1(x, grado);
@@ -33,11 +43,16 @@ public class Polinomio {
 		return ( coeficientes[grado-n] * myPow(x, n) ) + evaluarRecursiva1(x, n-1);
 	}
 	
+	/*
+	 Complejidad Computacional;
+	 RecursivaPar -> O(n!) 
+	 */
+	
 	public double evaluarRecursivaPar(double x){
 		return evaluarRecursivaPar1(x,grado);
 	}
 	
-	public double evaluarRecursivaPar1(double x ,int n){
+	private double evaluarRecursivaPar1(double x ,int n){
 		if(n==0)
 			return coeficientes[grado];
 		if(n % 2 == 0)
@@ -45,20 +60,41 @@ public class Polinomio {
 		return coeficientes[grado-n] * myPow(x, n) + evaluarRecursivaPar1(x, n-1);
 	}
 	
+	/*
+	 Complejidad Computacional;
+	 ProgDinamica -> O(n^2) 
+	 */
+	
 	public double evaluarProgDinamica(double x ){
 		double[] vectorResul = new double[grado+1];
 		int i;
 		vectorResul[grado] = coeficientes[grado] * myPow(x, 0);
 		for(i=grado-1 ; i>=0 ; i--){
-			vectorResul[i] = coeficientes[i] * myPow(x, i) + vectorResul[i+1];
+			vectorResul[i] = coeficientes[i] * myPow(x, grado - i) + vectorResul[i+1];
 		}
 		return vectorResul[i+1];
 	}
 	
-	public double evaluarMejorada(double x ){
-				
-		return 1;
+	/*
+	 Complejidad Computacional;
+	 Mejorada -> O(n)
+	 */
+	
+	public double evaluarMejorada(double x){
+		
+		double resultado = coeficientes[grado];
+		double potencia = x;
+		for (int i = grado - 1; i >= 0; i--) {
+			resultado += coeficientes[i] * potencia;
+			potencia *= x;
+		}
+		return resultado;
 	}
+	
+	/*
+	 Complejidad Computacional;
+	 ProgDinamica -> O(n^2) 
+	 */
 	
 	public double evaluarPow(double x ){
 		double resultado=coeficientes[grado];
@@ -69,10 +105,19 @@ public class Polinomio {
 		return resultado;
 	}
 	
+	/*
+	 Complejidad Computacional;
+	 Horner -> O(n) 
+	 */
+	
 	public double evaluarHorner( double x ){
 		double resultado=0;
+		double [] vectorHorner = new double[grado+1];
+		for( int j = 0 ; j <= grado ; j++){
+			vectorHorner[j] = coeficientes[grado-j];
+		}
 		for(int i=grado; i>=0; i--)
-			resultado= resultado * x + coeficientes[i];
+			resultado = (resultado * x) + vectorHorner[i];
 		return resultado;
 	}
 
