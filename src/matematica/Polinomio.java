@@ -93,7 +93,7 @@ public class Polinomio {
 	
 	/*
 	 Complejidad Computacional;
-	 ProgDinamica -> O(n^2) 
+	 Pow -> O(n^2 log n) 
 	 */
 	
 	public double evaluarPow(double x ){
