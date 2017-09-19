@@ -24,7 +24,7 @@ public class BinomioDeNewton {
 	public Polinomio newtonFormaPolinomica() {
 		double [] coeficientes = new double[grado + 1];
 		for(int i = 0; i <= grado; i++ ) {
-			coeficientes[i] = obtenerCoeficienteTerminoK(i);
+			coeficientes[i] = obtenerCoeficienteTerminoK(grado-i);
 		}
 		return new Polinomio(coeficientes);
 	}
