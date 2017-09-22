@@ -23,6 +23,14 @@ public class TestBinomioDeNewton {
 	}
 	
 	@Test
+	public void queCalculaBienElCoeficienteKConTartaglia() {
+		BinomioDeNewton binomio = new BinomioDeNewton(2, 4, 2);
+		Assert.assertEquals(16, binomio.obtenerCoeficienteTerminoKTartaglia(2), 0.1);
+		Assert.assertEquals(16, binomio.obtenerCoeficienteTerminoKTartaglia(1), 0.1);
+		Assert.assertEquals(4, binomio.obtenerCoeficienteTerminoKTartaglia(0), 0.1);
+	}
+	
+	@Test
 	public void desarrollaBienElBinomio() {
 		
 		// (2x + 4)^2 = 4x^2 + 16x + 16
@@ -37,6 +45,18 @@ public class TestBinomioDeNewton {
 	}*/
 	
 	@Test
+	public void desarrollaBienElBinomioConTartaglia() {
+		// (2x + 4)^2 = 4x^2 + 16x + 16
+		BinomioDeNewton binomio = new BinomioDeNewton(2, 4, 2);
+		Polinomio p = binomio.newtonFormaPolinomicaTartaglia();
+		double[]  coeficientes = {4, 16, 16};
+		Polinomio q = new Polinomio(coeficientes);
+		System.out.println(p.toString());
+		System.out.println(q.toString());
+		Assert.assertEquals(true, q.equals(p));
+	}
+	
+	/*@Test
 	public void tiempoDeEjecucionObtencionCoeficienteK() {
 		
 		Calendar tIni = new GregorianCalendar();
@@ -50,7 +70,7 @@ public class TestBinomioDeNewton {
 				+ ( tFin.getTimeInMillis() - tIni.getTimeInMillis()) +" milisegundos");
 	}
 	
-	/*@Test
+	@Test
 	public void tiempoDeEjecucionDesarrolloDeBinomio() {
 		
 		Calendar tIni = new GregorianCalendar();

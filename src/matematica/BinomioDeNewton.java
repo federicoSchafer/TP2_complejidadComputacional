@@ -5,11 +5,13 @@ public class BinomioDeNewton {
 	private double a;
 	private double b;
 	private int grado;
+	private int [][] tartaglia;
 	
 	public BinomioDeNewton(double primerTermino, double segundoTermino, int gr) {
 		a = primerTermino;
 		b = segundoTermino;
 		grado = gr;
+		generarTrianguloDeTartaglia(grado + 1);
 	}
 	
 	/**PUNTO 1 */
@@ -19,12 +21,24 @@ public class BinomioDeNewton {
 		return (int) (calculoCombinatoria(grado, k) * Math.pow(a, k) * Math.pow(b, grado - k) );
 	}
 	
+	public int obtenerCoeficienteTerminoKTartaglia(int k) {
+		return (int) (tartaglia[grado][k] * Math.pow(a, grado - k) * Math.pow(b, k));
+	}
+	
 	/** PUNTO 2 */
 	
 	public Polinomio newtonFormaPolinomica() {
 		double [] coeficientes = new double[grado + 1];
 		for(int i = 0; i <= grado; i++ ) {
 			coeficientes[i] = obtenerCoeficienteTerminoK(grado-i);
+		}
+		return new Polinomio(coeficientes);
+	}
+	
+	public Polinomio newtonFormaPolinomicaTartaglia() {
+		double[] coeficientes = new double[grado + 1];
+		for (int i = 0; i <= grado; i++) {
+			coeficientes[i] = obtenerCoeficienteTerminoKTartaglia(i);
 		}
 		return new Polinomio(coeficientes);
 	}
@@ -62,28 +76,22 @@ public class BinomioDeNewton {
 		}
 	}
 	
-	public double getA() {
-		return a;
+	public int[][] trianguloDeTartaglia(int n) {
+		int[][] tartaglia = new int[n][n];
+		for (int i = 0; i < tartaglia.length; i++) {
+			tartaglia[i][i] = 1;
+			tartaglia[i][0] = 1;
+		}
+		for (int i = 2; i < n; i++) {
+			for (int j = 1; j < i; j++) {
+				tartaglia[i][j] = tartaglia[i - 1][j - 1] + tartaglia[i - 1][j];
+			}
+		}
+		return tartaglia;
 	}
-
-	public void setA(double a) {
-		this.a = a;
-	}
-
-	public double getB() {
-		return b;
-	}
-
-	public void setB(double b) {
-		this.b = b;
-	}
-
-	public int getGrado() {
-		return grado;
-	}
-
-	public void setGrado(int grado) {
-		this.grado = grado;
+	
+	private void generarTrianguloDeTartaglia(int i) {
+		tartaglia = trianguloDeTartaglia(grado + 1);
 	}
 
 }
