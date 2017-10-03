@@ -47,19 +47,23 @@ public class Polinomio {
 	
 	/*
 	 Complejidad Computacional;
-	 RecursivaPar -> O(n!) 
+	 RecursivaPar -> O(n^2) 
 	 */
 	
 	public double evaluarRecursivaPar(double x){
-		return evaluarRecursivaPar1(x, grado);
+		double resultado = 0;
+		for(int i=0; i<=grado; i++)
+			resultado += evaluarRecursivaPar1(x,grado-i)* coeficientes[i];
+		return resultado;
 	}
 	
-	private double evaluarRecursivaPar1(double x ,int n){
-		if(n==0)
-			return coeficientes[grado];
-		if(n % 2 == 0)
-			return coeficientes[grado-n] * myPow(x*x, n/2) + evaluarRecursivaPar1(x, n-1);
-		return coeficientes[grado-n] * myPow(x, n) + evaluarRecursivaPar1(x, n-1);
+	private double evaluarRecursivaPar1(double x ,int i){
+		if(i==0)
+			return 1;
+		if(i%2==0)
+			return evaluarRecursivaPar1(x*x, i/2);
+		else
+			return x * evaluarRecursivaPar1(x, i-1);
 	}
 	
 	/*
