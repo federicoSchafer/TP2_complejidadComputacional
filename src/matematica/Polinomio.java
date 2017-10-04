@@ -40,9 +40,13 @@ public class Polinomio {
 	}
 	
 	private double evaluarRecursiva1(double x ,int n){
-		if(n == 0)
-			return coeficientes[grado];
-		return ( coeficientes[grado-n] * myPow(x, n) ) + evaluarRecursiva1(x, n-1);
+		double resultado = 0;
+		
+		for(int i = 0; i <= grado; i++){
+			resultado += myPowRecursivo(x, grado-i) * coeficientes[i];
+		}
+		
+		return resultado;
 	}
 	
 	/*
@@ -68,7 +72,7 @@ public class Polinomio {
 	
 	/*
 	 Complejidad Computacional;
-	 ProgDinamica -> O(n^2) 
+	 ProgDinamica -> O(n) 
 	 */
 	
 	@Override
@@ -102,13 +106,21 @@ public class Polinomio {
 	}
 
 	public double evaluarProgDinamica(double x ){
-		double[] vectorResul = new double[grado+1];
-		int i;
-		vectorResul[grado] = coeficientes[grado] * myPow(x, 0);
-		for(i=grado-1 ; i>=0 ; i--){
-			vectorResul[i] = coeficientes[i] * myPow(x, grado - i) + vectorResul[i+1];
+	
+		double[] vectorExp = new double[grado];
+		int resultado = 0;
+		vectorExp[grado-1] = x;
+		
+		for(int i = grado-2; i >= 0; i--){
+			vectorExp[i] = vectorExp[i+1] * x;
 		}
-		return vectorResul[i+1];
+		
+		for (int i = 0; i < vectorExp.length; i++) {
+			resultado += coeficientes[i] * vectorExp[i];
+		}
+		
+		resultado += coeficientes[grado];
+		return resultado;
 	}
 	
 	/*
@@ -147,12 +159,8 @@ public class Polinomio {
 	
 	public double evaluarHorner( double x ){
 		double resultado=0;
-		double [] vectorHorner = new double[grado+1];
-		for( int j = 0 ; j <= grado ; j++){
-			vectorHorner[j] = coeficientes[grado-j];
-		}
-		for(int i=grado; i>=0; i--)
-			resultado = (resultado * x) + vectorHorner[i];
+		for(int i=0; i<=grado; i++)
+			resultado = (resultado * x) + coeficientes[i];
 		return resultado;
 	}
 
@@ -165,9 +173,17 @@ public class Polinomio {
 	}
 	
 	private double myPow(double x , int n){
+		
 		double resultado=x;
 		for(int i=1 ; i<n ; i++)
 			resultado *= x;
 		return resultado;
+	}
+	
+	private double myPowRecursivo(double x, int n){
+		if(n == 0){
+			return  1;
+		}
+		return x*myPowRecursivo(x, n-1);
 	}
 }
